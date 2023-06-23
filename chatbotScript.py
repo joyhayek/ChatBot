@@ -31,8 +31,8 @@ for intent in data["intents"]:
         # Tokenize each word in patterns and add the tokens to the words list
         tokens = nltk.word_tokenize(pattern)
         words.extend(tokens)
-        # Add each pattern to the docs_x list
-        docs_x.append(pattern)
+        # Add the tokens to the docs_x list
+        docs_x.append(tokens)
         # Add the tag of each pattern to the docs_y list
         docs_y.append(intent["tag"])
         
@@ -40,11 +40,11 @@ for intent in data["intents"]:
     if intent["tag"] not in labels:
         labels.append(intent["tag"])
         
-# Stem all words in the words list and remove duplicates
-words = [stemmer.stem(w.lower()) for w in words]
+# Stem all tokens
+words = [stemmer.stem(token.lower()) for token in words if token != "?"]
 # Store the words in a sorted list that doesn't contain any duplicates
 words = sorted(list(set(words)))
-# Sort the labels
+# Sort the labels/tags
 labels = sorted(labels)
 
 # Perform one-hot-encoding on the words - neural networks only understand numbers and not words
@@ -54,14 +54,24 @@ output = []
 
 out_empty = [0 for _ in range(len(labels))]
 
-for doc in docs_x:
+for x, doc in enumerate(docs_x):
     bag = []
-    # Stem each pattern
-    stemmed_patterns = [stemmer.stem(d) for d in doc]
+    # Stem each token in docs_x
+    stemmed_tokens = [stemmer.stem(d) for d in doc]
     # Encode each stemmed word based on the pattern and append to bag
-    for w in words:
-        if w in stemmed_patterns:
+    for word in words:
+        if word in stemmed_tokens:
             bag.append(1)
-            
         else:
             bag.append(0)
+
+    # Generate the encoded output lists
+    output_row = out_empty[:]
+    output_row[labels.index(docs_y[x])] = 1
+    
+    training.append(bag)
+    output.append(output_row)
+    
+# Turn the training and output lists into numpy arrays
+training = np.array(training)
+output = np.array(output)

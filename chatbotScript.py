@@ -85,3 +85,10 @@ net = tflearn.fully_connected(net, 8)
 net = tflearn.fully_connected(net, len(output[0]), activation = "softmax")
 net = tflearn.regression(net)
 
+# Training the model
+model = tflearn.DNN(net)
+
+# Fit the model
+model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+# Save the model
+model.save("model.tflearn")

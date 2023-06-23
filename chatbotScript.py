@@ -40,4 +40,10 @@ for intent in data["intents"]:
     if intent["tag"] not in labels:
         labels.append(intent["tag"])
         
+# Stem all words in the words list and remove duplicates
+words = [stemmer.stem(w.lower()) for w in words]
+# Store the words in a sorted list that doesn't contain any duplicates
+words = sorted(list(set(words)))
+# Sort the labels
+labels = sorted(labels)
 

@@ -1,1 +1,52 @@
-
+{"intents": [
+    {"tag": "greeting",
+     "patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "What's up"],
+     "responses": ["Hello! How can I help?", "Hi there, how can I help?", "Good day! How may I assist you today?"],
+     "context_set": ""
+    },
+    {"tag": "well-being",
+     "patterns": ["how are you", "how have you been", "how are you feeling", "how's your day been"],
+     "responses": ["I'm good thanks! How can I help?"]
+    },
+    {"tag": "goodbye",
+     "patterns": ["Bye", "See you later", "Goodbye", "I am leaving", "Have a good day"],
+     "responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!", "Bye, enjoy the rest of your day!"],
+     "context_set": ""
+    },
+    {"tag": "age",
+     "patterns": ["how old", "how old is Joy", "what is your age", "how old are you", "age?"],
+     "responses": ["I am 20 years old!", "20 years young!", "I'm 20"],
+     "context_set": ""
+    },
+    {"tag": "name",
+     "patterns": ["what is your name", "what should I call you", "whats your name?"],
+     "responses": ["You can call me Joy.", "I'm Joy!", "My name is Joy"],
+     "context_set": ""
+    },
+    {"tag": "shop",
+     "patterns": ["Id like to buy something", "whats on the menu", "what do you recommend?", "could i get something to eat", "what do you sell"],
+     "responses": ["I recommend the chocolate chip cookies!", "Chococlate chip cookies are on the menu!", "Would you like some chocolate chip cookies?"],
+     "context_set": ""
+    },
+    {"tag": "price",
+     "patterns": ["How much do these cookies cost", "what's the price", "price?", "how much do they cost"],
+     "responses": ["Each cookie is for 2$", "We sell the cookies for 2$ each!"],
+     "context_set": ""
+    },
+    {"tag": "hours",
+     "patterns": ["when are you guys open", "what are your hours", "hours of operation", "when do you close", "are you open now?"],
+     "responses": ["We are open 9am-7pm Monday to Friday!"],
+     "context_set": ""
+    },
+    {"tag": "location",
+     "patterns": ["What's your location", "what's the location of this place", "Where are you", "where's the shop", "where can i find you", "where's the place"],
+     "responses": ["We are located on 13 Alexander Street, Coburg VIC 3055"],
+     "context_set": ""
+    },
+    {"tag": "thanks",
+     "patterns": ["Thank you!", "Thanks", "Thanks for the help"],
+     "responses": ["You're welcome!", "My pleasure", "Anytime", "Happy to help!"],
+     "context_set": ""
+    }
+]
+}

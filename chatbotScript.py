@@ -47,3 +47,21 @@ words = sorted(list(set(words)))
 # Sort the labels
 labels = sorted(labels)
 
+# Perform one-hot-encoding on the words - neural networks only understand numbers and not words
+# We will store 0 if the word doesn't exist in the prompt, and 1 if it does
+training = []
+output = []
+
+out_empty = [0 for _ in range(len(labels))]
+
+for doc in docs_x:
+    bag = []
+    # Stem each pattern
+    stemmed_patterns = [stemmer.stem(d) for d in doc]
+    # Encode each stemmed word based on the pattern and append to bag
+    for w in words:
+        if w in stemmed_patterns:
+            bag.append(1)
+            
+        else:
+            bag.append(0)

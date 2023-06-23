@@ -4,7 +4,7 @@ import nltk
 from nltk.stem.lancaster import LancasterStemmer
 import numpy as np
 import tflearn
-import tensorflow as tf
+import tensorflow
 import json
 import random
 
@@ -75,3 +75,13 @@ for x, doc in enumerate(docs_x):
 # Turn the training and output lists into numpy arrays
 training = np.array(training)
 output = np.array(output)
+
+# Creating the model
+tensorflow.reset_default_graph()
+
+net = tflearn.input_data(shape=[None, len(training[0])])
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, len(output[0]), activation = "softmax")
+net = tflearn.regression(net)
+

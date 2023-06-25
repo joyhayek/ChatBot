@@ -98,13 +98,10 @@ net = tflearn.regression(net)
 # Training the model
 model = tflearn.DNN(net)
 
-try:
-    model.load("model.tflearn")
-except Exception:
-    # Fit the model
-    model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
-    # Save the model
-    model.save("model.tflearn")
+# Fit the model
+model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+# Save the model
+model.save("model.tflearn")
 
 
 # Start making predictions
@@ -120,3 +117,20 @@ def bag_of_words(s, words):
                 bag[i] = 1
                 
     return numpy.array(bag)
+
+
+def chat():
+    print("Start talking with the bot! (type quit to stop)")
+    while True:
+        inp = input("You: ")
+        if inp.lower() == "quit":
+            break 
+        
+        results = model.predict([bag_of_words(inp, words)])
+        # Returns the index of the highest probability
+        results_index = numpy.argmax(results)
+        tag = labels[results_index]
+        print(tag)
+        
+
+chat()

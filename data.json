@@ -34,7 +34,7 @@
      "context_set": ""
     },
     {"tag": "hours",
-     "patterns": ["when are you guys open", "what are your hours", "hours of operation", "when do you close", "are you open now?"],
+     "patterns": ["when are you guys open", "what are the hours", "hours of operation", "when do you close", "are you open now?"],
      "responses": ["We are open 9am-7pm Monday to Friday!"],
      "context_set": ""
     },

@@ -118,7 +118,6 @@ def bag_of_words(s, words):
                 
     return numpy.array(bag)
 
-
 def chat():
     print("Start talking with the bot! (type quit to stop)")
     while True:
@@ -129,8 +128,14 @@ def chat():
         results = model.predict([bag_of_words(inp, words)])
         # Returns the index of the highest probability
         results_index = numpy.argmax(results)
+        # Get the corresponding tag
         tag = labels[results_index]
-        print(tag)
+        # Get the corresponding response from the tag from the json file
+        for tg in data["intents"]:
+            if tg["tag"] == tag:
+                responses = tg["responses"]
+        # Display the responses
+        print(random.choice(responses))        
         
 
 chat()

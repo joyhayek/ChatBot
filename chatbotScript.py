@@ -118,6 +118,7 @@ def bag_of_words(s, words):
                 
     return numpy.array(bag)
 
+# Get an answer from the chatbot
 def chat():
     print("Start talking with the bot! (type quit to stop)")
     while True:
@@ -129,20 +130,20 @@ def chat():
         # Returns the index of the highest probability
         results_index = numpy.argmax(results)
         # Check the value of the probability
-        
         # If valid, print appropriate response
         if results[results_index] > 0.7:
             # Get the corresponding response from the tag from the json file
             # Get the corresponding tag
             tag = labels[results_index]
+            # Get the corresponding responses from the tag
             for tg in data["intents"]:
                 if tg["tag"] == tag:
                     responses = tg["responses"]
-            # Display the responses
+            # Display the response
             print(random.choice(responses))       
             
         # If not valid, print a message asking user to try again
         else:
-            print("I'm not sure I understand. Please try again or ask another question") 
+            print("I'm not sure I understand. Please try again or ask another question.") 
             
 chat()
